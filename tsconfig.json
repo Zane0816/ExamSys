@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "sourceMap": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "strictFunctionTypes": false,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "lib": [
+      "es6",
+      "es7",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,296 @@
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  font-family: system, -apple-system, BlinkMacSystemFont,
+  "PingFang SC", "Segoe UI", "Microsoft YaHei", "Microsoft YaHei UI", "微软雅黑", "Hiragino Sans GB", "Hiragino Sans GB W3", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+  "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+:root {
+
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #C0C0C0;
+  border-radius: 0.3125rem;
+  width: 8px;
+}
+
+.textOverflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#WinFrame {
+  width: 100%;
+  height: 100%;
+
+  .Top {
+    -webkit-app-region: drag;
+    background-color: #e4e4e4;
+    padding: 0;
+    line-height: initial;
+    height: 50px;
+
+    > .Icon {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      -webkit-app-region: no-drag;
+      background: no-repeat 10px 5px;
+      background-position: center;
+      float: right;
+      transition: 0.4s;
+
+      &.Close {
+        background-image: url("../images/Close.png");
+
+        &:hover {
+          background-color: #ed1135;
+        }
+      }
+
+      &.Max {
+        background-image: url("../images/Max.png");
+
+        &.active {
+          background-image: url("../images/Default.png");
+        }
+      }
+
+      &.Min {
+        background-image: url("../images/Min.png");
+      }
+
+      &:hover {
+        background-color: #d4d9de;
+      }
+    }
+
+    .Title {
+      font-size: 14px;
+      display: initial;
+      line-height: 50px;
+      vertical-align: top;
+    }
+
+    .LogoIcon {
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      /*padding: 5px 10px;*/
+      background: url("../images/Logo.png") no-repeat;
+      background-size: cover;
+      margin: 10px 5px 5px;
+    }
+  }
+
+  > main {
+    overflow: auto;
+    text-align: center;
+  }
+
+  .OpBtn {
+    font-size: 50px;
+    font-weight: bold;
+    height: 110px;
+    margin-top: 20%;
+    padding: 0 40px;
+
+    &:first-child:not(:last-child) {
+      margin-right: 50px;
+    }
+  }
+}
+
+#MasterForm {
+  padding: 20px;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+
+  .dynamic-delete-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: #999;
+    transition: all 0.3s;
+  }
+
+  .dynamic-delete-button:hover {
+    color: #777;
+  }
+
+  .dynamic-delete-button[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .QuestionItem input {
+    width: calc(100% - 30px);
+    margin-right: 6px;
+
+    + i {
+      position: relative;
+      top: 4px;
+    }
+  }
+
+  .ant-checkbox-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .ant-checkbox-group {
+    width: 100%;
+  }
+
+  .ant-checkbox {
+    top: -10px;
+
+    + span {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+  }
+
+  .AnswerItem {
+    width: 100%;
+    display: flex;
+
+    .ant-form-item-control-wrapper {
+      flex: 1;
+    }
+
+    input {
+      width: calc(100% - 30px);
+      margin-right: 6px;
+
+      + i {
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+}
+
+#ExamList {
+  text-align: left;
+
+  header {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  h1 {
+    display: inline-block;
+    margin-bottom: 0;
+    padding-left: 20px;
+
+    + label {
+      margin-left: 10px;
+      color: #333;
+    }
+  }
+
+  .ant-checkbox-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ant-checkbox-wrapper {
+    margin-left: 0;
+  }
+
+  .ant-form-item-children > p {
+    margin-bottom: 0;
+
+    &:nth-child(2) {
+      margin-left: -70px;
+      line-height: 20px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+#CheckExam {
+  padding: 20px;
+  text-align: left;
+
+  button {
+    margin-right: 20px;
+  }
+
+  .CheckItem {
+    display: flex;
+
+    b, label {
+      flex: 1
+    }
+  }
+}
+
+#ExamAnswer {
+  .ant-list-header {
+    b {
+      font-size: 18px
+    }
+
+    label {
+      color: #52c41a;
+      margin-left: 20px;
+    }
+
+    span {
+      margin-left: 20px;
+    }
+
+    p:last-child {
+      text-align: left;
+      padding-left: 20px;
+    }
+  }
+
+  .ant-list-item {
+    padding: 20px 20px 0;
+    text-align: left;
+    display: block;
+  }
+
+  .Answer {
+    padding-left: 50px;
+
+    &.Right {
+      color: #52c41a;
+    }
+
+    &.Error {
+      color: #ff4d4f;
+    }
+  }
+
+  i {
+    margin-left: 10px;
+  }
+
+  .ErrorTip {
+    color: #ff4d4f;
+    padding-left: 50px;
+
+    label {
+      color: #52c41a;
+    }
+  }
+}

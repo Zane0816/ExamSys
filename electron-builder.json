@@ -1,0 +1,25 @@
+{
+  "directories": {
+    "buildResources": "./dist",
+    "output": "./Release",
+    "app": "./dist"
+  },
+  "nsis": {
+    "installerIcon": "Logo.ico",
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "perMachine": true,
+    "shortcutName": "${productName} v${version}"
+  },
+  "win": {
+    "icon": "Logo.ico",
+    "requestedExecutionLevel": "requireAdministrator"
+  },
+  "nodeGypRebuild": false,
+  "portable": {
+    "requestExecutionLevel": "user"
+  },
+  "npmArgs": [],
+  "npmRebuild": false,
+  "asar": false
+}
