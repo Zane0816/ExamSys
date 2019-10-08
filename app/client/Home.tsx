@@ -85,7 +85,10 @@ class Home extends React.Component<HomeProps> {
               for (let key in values) {
                 if (key.startsWith('Question')) {
                   const index = parseInt(key.replace('Question', ''))
-                  Answers[index] = values[key] && values[key].join() || ''
+                  if(values[key]){
+                    const Result = values[key].sort()
+                    Answers[index] = Result || ''
+                  }
                   continue
                 }
               }
