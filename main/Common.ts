@@ -36,15 +36,15 @@ export const GetRightValue = (answer: Array<Answer>): string[] => {
       Right.push(Answer[i])
     }
   })
-  return Right
+  return Right.sort()
 }
 
 export const ReviewAnswer = (Path: string): ExamAnswer => {
-  const Exam: { ExamName: string, TestQuestions: Array<TestQuestion>, Answers: Array<string>, ExamDesc: string, UserName: string, UserNum: string } = BSON.deserialize(readFileSync(Path))
+  const Exam: { ExamName: string, TestQuestions: Array<TestQuestion>, Answers: Array<string[]>, ExamDesc: string, UserName: string, UserNum: string } = BSON.deserialize(readFileSync(Path))
   let Score: number = 0, TotalScore: number = 0
   Exam.TestQuestions.forEach((d, i) => {
     TotalScore += d.Score
-    if (GetRightValue(d.Answers).join() === Exam.Answers[i]) {
+    if (Exam.Answers[i] && GetRightValue(d.Answers).join() === Exam.Answers[i].sort().join()) {
       Score += d.Score
     }
   })

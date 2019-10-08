@@ -26,15 +26,19 @@ class ExamAnswer extends React.Component<ExamAnswerProps> {
           <p><b>{AppStore.ExamAnswer.ExamName}</b> 总分：{AppStore.ExamAnswer.TotalScore} <span>{AppStore.ExamAnswer.UserName}--{AppStore.ExamAnswer.UserNum} </span><label>得分：{AppStore.ExamAnswer.Score}</label></p>
           <p>案例描述:{AppStore.ExamAnswer.ExamDesc}</p>
         </>}>
-          {AppStore.ExamAnswer.TestQuestions.map((d, i) => <List.Item key={i}>
-            <p>题目{i + 1}：{d.Title}</p>
-            {d.Desc && <p>问题描述：{d.Desc}</p>}
-            {
-              d.Answers.map((da, ai) => <p key={ai} className={classNames('Answer', { Right: da.Checked, Error: AppStore.ExamAnswer!.Answers[i].includes(Answer[ai]) && !da.Checked })}>{Answer[ai]}：{da.Title}{AppStore.ExamAnswer!.Answers[i].includes(Answer[ai]) &&
-              <Icon type="check"/>}</p>)
-            }
-            {AppStore.ExamAnswer!.Answers[i] !== GetRightValue(d.Answers).join() && <p className='ErrorTip'>回答错误！<label>（正确答案：{GetRightValue(d.Answers).join('，')}）</label></p>}
-          </List.Item>)}
+          {AppStore.ExamAnswer.TestQuestions.map((d, i) => {
+            return <List.Item key={i}>
+              <p>题目{i + 1}：{d.Title}</p>
+              {d.Desc && <p>问题描述：{d.Desc}</p>}
+              {
+                d.Answers.map((da, ai) => {
+                  const IsSelected = AppStore.ExamAnswer!.Answers.length > i && AppStore.ExamAnswer!.Answers[i].includes(Answer[ai])
+                  return <p key={ai} className={classNames('Answer', { Right: da.Checked, Error: IsSelected && !da.Checked })}>{Answer[ai]}：{da.Title}{IsSelected && <Icon type="check"/>}</p>
+                })
+              }
+              {(AppStore.ExamAnswer!.Answers.length > i && AppStore.ExamAnswer!.Answers[i].slice().sort().join()) !== GetRightValue(d.Answers).join() && <p className='ErrorTip'>回答错误！<label>（正确答案：{GetRightValue(d.Answers).join('，')}）</label></p>}
+            </List.Item>
+          })}
         </List>
       }
       <p><Button onClick={() => {this.props.ReReview()}} style={{ width: '60%' }}>返回</Button></p>

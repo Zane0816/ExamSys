@@ -91,7 +91,7 @@ interface ExamAnswer {
   ExamName: string,
   ExamDesc: string,
   TestQuestions: Array<TestQuestion>,
-  Answers: Array<string>,
+  Answers: Array<string[]>,
   TotalScore: number,
   Score: number,
   UserName: string,
