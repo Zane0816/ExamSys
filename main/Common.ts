@@ -13,7 +13,9 @@ export const AESEncryption = (data: string, key: string, iv: string): string => 
 }
 
 export const AESDecryption = (data: string, key: string, iv: string): string => {
-  if (!data) {return ''}
+  if (!data) {
+    return ''
+  }
   iv = iv || ''
   let cipherChunks = []
   const decipher = createDecipheriv('aes-256-ecb', key, iv)
@@ -40,12 +42,17 @@ export const GetRightValue = (answer: Array<Answer>): string[] => {
 }
 
 export const ReviewAnswer = (Path: string): ExamAnswer => {
-  const Exam: { ExamName: string, TestQuestions: Array<TestQuestion>, Answers: Array<string[]>, ExamDesc: string, UserName: string, UserNum: string } = BSON.deserialize(readFileSync(Path))
-  let Score: number = 0, TotalScore: number = 0
+  const Exam: { ExamName: string; TestQuestions: Array<TestQuestion | TestQuestion2>; Answers: Array<string[]>; ExamDesc: string; UserName: string; UserNum: string } = BSON.deserialize(
+    readFileSync(Path),
+  )
+  let Score: number = 0,
+    TotalScore: number = 0
   Exam.TestQuestions.forEach((d, i) => {
     TotalScore += d.Score
-    if (Exam.Answers[i] && GetRightValue(d.Answers).join() === Exam.Answers[i].sort().join()) {
-      Score += d.Score
+    if ('Answers' in d) {
+      if (Exam.Answers[i] && GetRightValue(d.Answers).join() === Exam.Answers[i].sort().join()) {
+        Score += d.Score
+      }
     }
   })
   return { ExamName: Exam.ExamName, Score, TestQuestions: Exam.TestQuestions, Answers: Exam.Answers, ExamDesc: Exam.ExamDesc, TotalScore, UserName: Exam.UserName, UserNum: Exam.UserNum }
